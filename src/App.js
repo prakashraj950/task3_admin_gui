@@ -4,6 +4,7 @@ import Home from "./pages/Home.js";
 import AdminList from "./pages/AdminList";
 import React from "react";
 import Admin from "./pages/Admin";
+import AdCustom from "./pages/AdCustom";
 export default class App extends React.Component {
   constructor() {
     super();
@@ -23,6 +24,7 @@ export default class App extends React.Component {
             </Route>
             <Route path="/AdminList" component={AdminList} />
             <Route path="/admin/:name" component={Admin} />
+            <Route path="/ad_custom" component={AdCustom} />
           </div>
         </Router>
       </div>

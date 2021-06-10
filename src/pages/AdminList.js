@@ -14,6 +14,9 @@ class AdminList extends Component {
           <li>
             <Link to="admin/ad_label">Ad label</Link>
           </li>
+          <li>
+            <Link to="ad_custom">Ad custom</Link>
+          </li>
         </ul>
       </div>
     );
