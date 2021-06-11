@@ -17,6 +17,12 @@ class AdminList extends Component {
           <li>
             <Link to="ad_custom">Ad custom</Link>
           </li>
+          <li>
+            <Link to="deletePage">delete ad</Link>
+          </li>
+          <li>
+            <Link to="ServedData">Served data</Link>
+          </li>
         </ul>
       </div>
     );

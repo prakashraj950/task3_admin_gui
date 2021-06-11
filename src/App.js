@@ -5,15 +5,26 @@ import AdminList from "./pages/AdminList";
 import React from "react";
 import Admin from "./pages/Admin";
 import AdCustom from "./pages/AdCustom";
+import DeletePage from "./pages/deletePage";
+import Delete from "./pages/delete";
+import ServedData from "./pages/servedata";
 export default class App extends React.Component {
   constructor() {
     super();
+    this.state={
+      selectedId:""
+    }
   }
 
   setAppState = (domain_name, password) => {
     localStorage.setItem("domain_name", domain_name);
     localStorage.setItem("password", password);
   };
+  selectId=(selectedId)=>{
+    console.log(selectedId)
+    this.setState({selectedId})
+  }
+
   render() {
     return (
       <div className="App">
@@ -25,6 +36,13 @@ export default class App extends React.Component {
             <Route path="/AdminList" component={AdminList} />
             <Route path="/admin/:name" component={Admin} />
             <Route path="/ad_custom" component={AdCustom} />
+            <Route path="/deletePage">
+              <DeletePage selectId={this.selectId} />
+            </Route>
+            <Route path="/delete">
+              <Delete selectedId={this.state.selectedId}/>
+            </Route>
+            <Route path="/ServedData" component={ServedData} />
           </div>
         </Router>
       </div>
