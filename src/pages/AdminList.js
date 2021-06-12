@@ -9,16 +9,11 @@ class AdminList extends Component {
         <p>This is Admin page</p>
         <ul>
           <li>
-            <Link to="admin/ads">insert ads</Link>
+            <Link to="admin">insert ads</Link>
           </li>
+          
           <li>
-            <Link to="admin/ad_label">Ad label</Link>
-          </li>
-          <li>
-            <Link to="ad_custom">Ad custom</Link>
-          </li>
-          <li>
-            <Link to="deletePage">delete ad</Link>
+            <Link to="deletePage">manage ads</Link>
           </li>
           <li>
             <Link to="ServedData">Served data</Link>

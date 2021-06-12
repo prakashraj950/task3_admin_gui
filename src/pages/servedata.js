@@ -17,7 +17,9 @@ componentDidMount(){
 }
 
 search=()=>{
+  console.log(this.state.formdata);
     const data = this.filterdata(this.state.formdata)
+    console.log(data);
     axios.post('http://localhost:8000/servedata',{data:data})
     .then((res)=>{
         console.log(res.data);
@@ -27,11 +29,20 @@ search=()=>{
 
 filterdata(formdata){
  const data = { domain_name: localStorage.getItem('domain_name') }
- if ( formdata.age_group !== ""){
+ if ( "age_group" in  formdata && formdata.age_group !== ""){
      data.age_group = formdata.age_group;
  }
-  if (formdata.city !== ""){
+  if ( "city" in  formdata && formdata.city !== ""){
      data.city = formdata.city;
+    }
+if ( "from_date" in  formdata && formdata.from_date !== ""){
+  data.from_date = formdata.from_date
+}
+if ("to_date" in  formdata && formdata.to_date !== ""){
+  data.to_date = formdata.to_date
+}
+if ("clicked" in  formdata && formdata.clicked !== ""){
+  data.clicked = formdata.clicked
 }
 return data;
 }
@@ -41,8 +52,21 @@ onChangeHandle=(input)=>(e) => {
     formdata[input] = file;
     this.setState({formdata})
     }
+  onCheck=(e)=>{
+    const {formdata} = this.state;
+    if(e.target.checked){
+      formdata[e.target.name] = 1;
+    }else formdata[e.target.name] = 0;
+    }
 
-
+datehandle=(e)=>{
+  const { formdata } = this.state;
+  const date = e.target.valueAsDate
+  let a = [{year: 'numeric'}, {month: '2-digit'}, {day: '2-digit'}];;
+  let s = join(date, a, '-');
+  formdata[e.target.name] = s;
+  this.setState({ formdata });
+}
 render(){
     const {data} = this.state
     
@@ -61,6 +85,13 @@ render(){
    
   return(<div>
       <div>
+      <input type="checkbox"
+      name="clicked"
+       onChange={this.onCheck} 
+      />
+      Clicked report
+      
+
       age_group
           <select
             name="age_group"
@@ -89,6 +120,8 @@ render(){
               nellai
             </option>
           </select>
+       from date <input type="date" name="from_date" onChange={this.datehandle}></input>
+      to date <input type="date" name="to_date" onChange={this.datehandle}></input>
         <button onClick={this.search}>search</button>
 
       </div>
@@ -108,10 +141,16 @@ render(){
         {tab}
         </table>
         
-        <button onClick={this.delete}>Delete</button>
   </div>)
   
   
   
 }
+}
+function join(t, a, s) {
+  function format(m) {
+     let f = new Intl.DateTimeFormat('en', m);
+     return f.format(t);
+  }
+  return a.map(format).join(s);
 }

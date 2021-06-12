@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { Redirect } from "react-router";
-import Delete from "./delete";
 export default class DeletePage extends Component {
   constructor(props) {
     super(props);

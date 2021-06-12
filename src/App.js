@@ -4,7 +4,6 @@ import Home from "./pages/Home.js";
 import AdminList from "./pages/AdminList";
 import React from "react";
 import Admin from "./pages/Admin";
-import AdCustom from "./pages/AdCustom";
 import DeletePage from "./pages/deletePage";
 import Delete from "./pages/delete";
 import ServedData from "./pages/servedata";
@@ -34,8 +33,7 @@ export default class App extends React.Component {
               <Home setAppState={this.setAppState} />
             </Route>
             <Route path="/AdminList" component={AdminList} />
-            <Route path="/admin/:name" component={Admin} />
-            <Route path="/ad_custom" component={AdCustom} />
+            <Route path="/admin" component={Admin} />
             <Route path="/deletePage">
               <DeletePage selectId={this.selectId} />
             </Route>

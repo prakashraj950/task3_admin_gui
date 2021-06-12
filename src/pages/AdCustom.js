@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { Component } from "react";
 export default class AdCustom extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-        data:{},
+        data:{Ad_id: this.props.id},
     };
 }
 
@@ -16,13 +16,15 @@ onChangehandle=(input)=>(e)=>{
 }
 submit=()=>{
     const domain_name = localStorage.getItem('domain_name')
-    axios.post('http://localhost:8000/custom',{data:this.state.data,domain_name:domain_name})
+    axios.post('http://localhost:8000/custom',{data:this.state.data,domain_name:domain_name});
+    this.props.getdata();
   }
 render(){
 return (<div>
-    Ad_id<input name="Ad_id" type="number" onChange={this.onChangehandle("Ad_id")}/>
-     <div><br/><br/>
-     
+    
+     <div>
+       <br/>
+       <br/>  
     pages
     <select
       onChange={this.onChangehandle("page_id")}>
@@ -61,7 +63,7 @@ return (<div>
       </option>
     </select>
   </div>
-  <button onClick={this.submit} >submit</button>
+  <button onClick={this.submit} >add</button>
   </div>
   )
 }
