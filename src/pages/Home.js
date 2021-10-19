@@ -13,9 +13,9 @@ class Home extends Component {
     this.setState({ [name]: e.target.value });
   };
 
-  login = () => {
+  login = async() => {
     console.log("LOG");
-    axios.post("http://localhost:8000/login", {
+   await axios.post("http://localhost:8000/login", {
         domain_name: this.state.domain_name,
         password: this.state.password
       })
