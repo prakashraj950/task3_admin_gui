@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { Redirect } from "react-router";
+import { ACCESS_POINT } from "../config";
 export default class DeletePage extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +11,7 @@ export default class DeletePage extends Component {
     };
 }
 componentDidMount(){
-  axios.get('http://localhost:8000/getads')
+  axios.get(ACCESS_POINT+'/getads')
   .then((res)=>{
     this.setState({data:res.data})
   })
@@ -24,7 +25,7 @@ render(){
   const {data,step} = this.state
   console.log(data);
   const body = data.map(files=>(
-  <div onClick={this.onClickhandle(files.id)}><img src={`http://localhost:8000/ads/${files.file}`} width="150" height="150" />
+  <div onClick={this.onClickhandle(files.id)}><img src={ACCESS_POINT+`/ads/${files.file}`} width="150" height="150" />
   <h4>id:{files.id}</h4>
   </div>
   

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { ACCESS_POINT } from "../config";
 class Admin extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +24,7 @@ class Admin extends Component {
 
   
     upload=()=>{
-    axios.post('http://localhost:8000/upload',this.state.data)
+    axios.post(ACCESS_POINT+'/upload',this.state.data)
   }
 
   render() {

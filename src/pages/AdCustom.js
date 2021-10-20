@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { ACCESS_POINT } from "../config";
 export default class AdCustom extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +17,7 @@ onChangehandle=(input)=>(e)=>{
 }
 submit=()=>{
     const domain_name = localStorage.getItem('domain_name')
-    axios.post('http://localhost:8000/custom',{data:this.state.data,domain_name:domain_name});
+    axios.post(ACCESS_POINT+'/custom',{data:this.state.data,domain_name:domain_name});
     this.props.getdata();
   }
 render(){

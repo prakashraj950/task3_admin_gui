@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Redirect } from "react-router";
 import AdCustom from "./AdCustom";
+import { ACCESS_POINT } from "../config";
 export default class Delete extends Component {
   constructor(props) {
     super(props);
@@ -20,9 +21,9 @@ componentDidMount(){
 }
 
 getdata=()=>{
-    axios.post('http://localhost:8000/getdata',{Ad_id: this.props.selectedId,domain_name:localStorage.getItem("domain_name")})
+    axios.post(ACCESS_POINT+'/getdata',{Ad_id: this.props.selectedId,domain_name:localStorage.getItem("domain_name")})
     .then((res)=>{
-        res.data.ads_row.file = `http://localhost:8000/ads/${res.data.ads_row.file}`
+        res.data.ads_row.file = ACCESS_POINT+`/ads/${res.data.ads_row.file}`
         this.setState({ads:res.data.ads_row,
             custom:res.data.custom_row,
             label:res.data.label_row})
@@ -30,7 +31,7 @@ getdata=()=>{
 }
 
 delete=async()=>{
-   await axios.post('http://localhost:8000/delete',{id:this.state.ads.id,Labeltable:"ad_label",Customtable:"ad_custom"});
+   await axios.post(ACCESS_POINT+'/delete',{id:this.state.ads.id,Labeltable:"ad_label",Customtable:"ad_custom"});
    this.setState({step:2})
 
 }
@@ -42,7 +43,7 @@ adHandle=(input)=>(e) => {
     }
     
     submit=()=>{
-      axios.post('http://localhost:8000/label',{data:this.state.labelData});
+      axios.post(ACCESS_POINT+'/label',{data:this.state.labelData});
       this.getdata();
     }
 

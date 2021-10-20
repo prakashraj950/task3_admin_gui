@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { ACCESS_POINT } from "../config";
 export default class ServedData extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +21,7 @@ search=()=>{
   console.log(this.state.formdata);
     const data = this.filterdata(this.state.formdata)
     console.log(data);
-    axios.post('http://localhost:8000/servedata',{data:data})
+    axios.post(ACCESS_POINT+'/servedata',{data:data})
     .then((res)=>{
         console.log(res.data);
         this.setState({data:res.data})

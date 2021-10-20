@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import { ACCESS_POINT } from "../config";
 import axios from "axios";
 
 class Home extends Component {
@@ -15,7 +16,7 @@ class Home extends Component {
 
   login = async() => {
     console.log("LOG");
-   await axios.post("http://localhost:8000/login", {
+   await axios.post(ACCESS_POINT+`/login`, {
         domain_name: this.state.domain_name,
         password: this.state.password
       })
