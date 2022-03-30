@@ -7,15 +7,15 @@ class AdminList extends Component {
       <div>
         <h2>Admin</h2>
         <p>This is Admin page</p>
-        <ul>
-          <li>
+        <ul class="list-group">
+          <li class="list-group-item">
             <Link to="admin">insert ads</Link>
           </li>
           
-          <li>
+          <li class="list-group-item">
             <Link to="deletePage">manage ads</Link>
           </li>
-          <li>
+          <li class="list-group-item">           
             <Link to="ServedData">Served data</Link>
           </li>
         </ul>

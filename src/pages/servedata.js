@@ -72,7 +72,7 @@ render(){
     const {data} = this.state
     
    const tab = data.map(e=>(<tr key={e.id}> 
-                        <td>{e.id}</td>
+                        <td scope="row">{e.id}</td>
                         <td>{e.Ad_id}</td>
                         <td>{e.domain_id}</td>
                         <td>{e.page_id}</td>
@@ -84,17 +84,20 @@ render(){
                         <td>{e.clicked}</td>
                         </tr>))
    
-  return(<div>
-      <div>
-      <input type="checkbox"
+  return(<div class="container-fluid">
+      <div class="row">
+      <div class="col-sm-12">
+ 
+      <div class="col-sm-2">
+      <input type="checkbox" class="form-control"
       name="clicked"
        onChange={this.onCheck} 
       />
       Clicked report
-      
-
+      </div>
+      <div class="col-sm-2">
       age_group
-          <select
+          <select class="form-control"
             name="age_group"
             onChange={this.onChangeHandle("age_group")}>
             <option  value={1}>
@@ -107,9 +110,11 @@ render(){
               25-40
             </option>
           </select>
+          </div>
+          <div class="col-sm-2">
           CITY
-          <select
-            name="city"
+          <select class="form-control"
+            name="city" 
             onChange={this.onChangeHandle("city")}>
             <option name="city" value="chennai">
               chennai
@@ -121,25 +126,37 @@ render(){
               nellai
             </option>
           </select>
-       from date <input type="date" name="from_date" onChange={this.datehandle}></input>
-      to date <input type="date" name="to_date" onChange={this.datehandle}></input>
-        <button onClick={this.search}>search</button>
-
+          </div>
+          <div class="col-sm-2">
+                   from date <input class="form-control" type="date" name="from_date" onChange={this.datehandle}>
+                   </input>
+                     </div>
+                     <div class="col-sm-1">
+      to date <input class="form-control" type="date" name="to_date" onChange={this.datehandle}></input>
+     
+          </div>
+      <div class="col-sm-2"> <button class="btn btn-primary" onClick={this.search}>search</button></div>
+      
+          </div>
       </div>
-       <table>
+       <table class="table table-hover table-bordered">
+       <thead>
         <tr>
-            <th>id</th>
-            <th>Ad id</th>
-            <th>domain id</th>
-            <th>page id</th>
-            <th>user</th>
-            <th>age group</th>
-            <th>city</th>
-            <th>served time</th>
-            <th>ip address</th>
-            <th>clicked</th>
+            <th scope="col">id</th>
+            <th scope="col">Ad id</th>
+            <th scope="col">domain id</th>
+            <th scope="col">page id</th>
+            <th scope="col">user</th>
+            <th scope="col">age group</th>
+            <th scope="col">city</th>
+            <th scope="col">served time</th>
+            <th scope="col">ip address</th>
+            <th scope="col">clicked</th>
         </tr>
+        </thead>
+        <tbody>
         {tab}
+        </tbody>
         </table>
         
   </div>)
